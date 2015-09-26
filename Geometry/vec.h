@@ -15,9 +15,10 @@ public:
 
   Vec& normalize()
   {
-    float l = length();
-    if (l > 0.0f)
-      x /= l, y /= l;
+    float L = length();
+
+    if (L > 0.0f)
+      x /= L, y /= L;
     return *this;
   }
   float length()        const { return static_cast<float>(sqrt(pow(x, 2.0) + pow(y, 2.0))); }
