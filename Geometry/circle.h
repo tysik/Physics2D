@@ -26,7 +26,7 @@ public:
   }
 
   virtual float getArea() const {
-    return 2.0f * pi * pow(radius_, 2.0);
+    return pi * pow(radius_, 2.0);
   }
 
   // Getters
