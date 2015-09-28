@@ -13,6 +13,8 @@ public:
     assert(radius_ >= 0.0f);
   }
 
+  Circle(const Circle& c) : Shape(c.origin()), radius_(c.radius()) {}
+
   virtual Vec getNormal(const Vec& point) const {
     Vec p = (point - origin_);
 
@@ -26,7 +28,7 @@ public:
   }
 
   virtual float getArea() const {
-    return 2.0f * pi * pow(radius_, 2.0);
+    return pi * pow(radius_, 2.0);
   }
 
   // Getters

@@ -2,10 +2,13 @@
 #define SHAPE_H
 
 #include "vec.h"
+#include <iostream>
 
 class Shape
 {
 public:
+  virtual ~Shape() {}
+
   /*
    * Return the normal vector pointing towards given point
    */
@@ -25,7 +28,7 @@ public:
   Vec origin() const { return origin_; }
 
 protected:
-  Shape(const Vec& origin) : origin_(origin) {}
+  Shape(const Vec& origin = Vec()) : origin_(origin) {}
 
   Vec origin_;  // The 2D offset (wanna move the shape? just move the origin!)
 };

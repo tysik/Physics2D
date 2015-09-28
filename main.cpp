@@ -4,6 +4,8 @@
 #include "Geometry/polygon.h"
 #include "Geometry/rectangle.h"
 
+#include "Dynamics/body.h"
+
 #include "Collisions/collision_detector.h"
 #include "Collisions/collision_detector_factory.h"
 #include "Collisions/circle_circle_collision_detector.h"
@@ -82,6 +84,17 @@ int main()
 
   if (cd->detect())
     cout << "collide!" << endl << endl;
+
+  std::vector<Vec> v = {Vec(), Vec(1,2), Vec(1.2f, 1.3f)};
+  Rectangle r(Vec(1.0f, 1.0f));
+  cout << rectangle.getArea() << endl << endl;
+
+  {
+    Circle some_circ(5.0f);
+    Body b(1.0f);
+    b.assignShape(some_circ);
+    cout << b.shape()->getArea() << endl;
+  }
 
   return 0;
 }

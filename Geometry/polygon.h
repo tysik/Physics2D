@@ -26,6 +26,11 @@ public:
     points_.push_back(points_.front()); // Add first point again to close the shape
   }
 
+  Polygon(const Polygon& polygon)
+    : Shape(polygon.origin()),
+      points_(polygon.points().begin(), polygon.points().end())
+  {}
+
   virtual Vec getNormal(const Vec& point) const {
     Vec p = point - origin_;
 

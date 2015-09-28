@@ -9,6 +9,8 @@ class Point : public Shape
 public:
   Point(const Vec& origin = Vec()) : Shape(origin) {}
 
+  Point(const Point& point) : Shape(point.origin()) {}
+
   virtual Vec getNormal(const Vec& point) const {
     Vec p = point - origin_;
 

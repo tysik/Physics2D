@@ -6,12 +6,20 @@
 class Rectangle : public Polygon
 {
 public:
+  Rectangle(const Vec& size, const Vec& origin = Vec())
+    : Polygon(std::vector<Vec>{origin, origin + Vec(size.x, 0.0f), origin + size, origin + Vec(0.0f, size.y)}, origin)
+  {
+    assert(checkRightAngles());
+  }
+
   Rectangle(const std::vector<Vec>& points = std::vector<Vec>(), const Vec& origin = Vec())
     : Polygon(points, origin)
   {
     assert(points.size() == 4);
     assert(checkRightAngles());
   }
+
+  Rectangle(const Rectangle& rectangle) : Polygon(rectangle) {}
 
 private:
   bool checkRightAngles() const {

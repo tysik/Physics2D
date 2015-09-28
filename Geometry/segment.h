@@ -9,9 +9,13 @@
 class Segment : public Shape
 {
 public:
-  Segment(const Vec& p1 = Vec(), const Vec& p2 = Vec(), const Vec& origin = Vec()) : Shape(origin), p1_(p1), p2_(p2) {
+  Segment(const Vec& p1 = Vec(), const Vec& p2 = Vec(1.0f, 0.0f), const Vec& origin = Vec())
+    : Shape(origin), p1_(p1), p2_(p2) {
     assert(p1_ != p2_);
   }
+
+  Segment(const Segment& segment)
+    : Shape(segment.origin()), p1_(segment.first_point()), p2_(segment.last_point()) {}
 
   /*
    * If the point's projection on segment lays outside

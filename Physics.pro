@@ -24,5 +24,6 @@ HEADERS += \
     Collisions/circle_segment_collision_detector.h \
     Collisions/circle_polygon_collision_detector.h \
     Collisions/collision_detector_factory.h \
-    Utilities/math_utils.h
+    Utilities/math_utils.h \
+    Dynamics/body.h
 b
