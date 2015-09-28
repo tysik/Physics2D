@@ -4,9 +4,9 @@
 #include "Geometry/vec.h"
 #include "Geometry/point.h"
 #include "Geometry/segment.h"
-#include "Geometry/circle.h"
 #include "Geometry/rectangle.h"
 #include "Geometry/polygon.h"
+#include "Geometry/circle.h"
 
 #include <typeinfo>
 
@@ -18,22 +18,8 @@ public:
       mass_inv_ = 0.0f;
   }
 
-  ~Body() {
-    if (shape_)
-      delete shape_;
-  }
-
-  void assignShape(const Shape& shape) {
-    if (typeid(shape) == typeid(const Point&))
-      shape_ = new Point(dynamic_cast<const Point&>(shape));
-    else if (typeid(shape) == typeid(const Segment&))
-      shape_ = new Segment(dynamic_cast<const Segment&>(shape));
-    else if (typeid(shape) == typeid(const Circle&))
-      shape_ = new Circle(dynamic_cast<const Circle&>(shape));
-    else if (typeid(shape) == typeid(const Rectangle&))
-      shape_ = new Rectangle(dynamic_cast<const Rectangle&>(shape));
-    else if (typeid(shape) == typeid(const Polygon&))
-      shape_ = new Polygon(dynamic_cast<const Polygon&>(shape));
+  void assignShape(Shape* shape) {
+    shape_ = shape;
   }
 
   void applyForce(Vec f) {
@@ -51,7 +37,7 @@ public:
   }
 
   // Getters:
-  const Shape* shape() const { return shape_; }
+  Shape* shape() const { return shape_; }
   float mass() const { return mass_; }
   float mass_inv() const { return mass_inv_; }
 

@@ -1,15 +1,17 @@
 #include "Geometry/point.h"
-#include "Geometry/circle.h"
 #include "Geometry/segment.h"
-#include "Geometry/polygon.h"
 #include "Geometry/rectangle.h"
+#include "Geometry/polygon.h"
+#include "Geometry/circle.h"
 
 #include "Dynamics/body.h"
 
-#include "Collisions/collision_detector.h"
-#include "Collisions/collision_detector_factory.h"
-#include "Collisions/circle_circle_collision_detector.h"
-#include "Collisions/circle_segment_collision_detector.h"
+#include "Collisions/collision.h"
+#include "Collisions/collision_factory.h"
+#include "Collisions/circle_point_collision.h"
+#include "Collisions/circle_segment_collision.h"
+#include "Collisions/circle_polygon_collision.h"
+#include "Collisions/circle_circle_collision.h"
 
 #include <iostream>
 #include <vector>
@@ -76,25 +78,16 @@ int main()
   cout << "- rectangle: " << rectangle.getSmallestDistance(pt) << endl;
   cout << "- triangle: " << triangle.getSmallestDistance(pt) << endl << endl;
 
-  Circle c1(1.0f, Vec(1.0f, 1.0f));
-  Circle c2(10.0f, Vec(10.0f, 0.0f));
-  Segment s(Vec(-10.0f, 0.0f), Vec(10.0f, 0.0f));
+  Body b1(1.0f, Vec( 1.0f, 2.0f));
+  Body b2(2.0f, Vec(-1.0f, 2.0f));
 
-  CollisionDetector* cd = CollisionDetectorFactory::create(rectangle, c1);
+  b1.assignShape(&circle);
+  b2.assignShape(&rectangle);
+
+  Collision* cd = CollisionFactory::create(b1, b2);
 
   if (cd->detect())
     cout << "collide!" << endl << endl;
-
-  std::vector<Vec> v = {Vec(), Vec(1,2), Vec(1.2f, 1.3f)};
-  Rectangle r(Vec(1.0f, 1.0f));
-  cout << rectangle.getArea() << endl << endl;
-
-  {
-    Circle some_circ(5.0f);
-    Body b(1.0f);
-    b.assignShape(some_circ);
-    cout << b.shape()->getArea() << endl;
-  }
 
   return 0;
 }

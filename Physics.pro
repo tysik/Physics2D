@@ -18,12 +18,11 @@ HEADERS += \
     Geometry/circle.h \
     Geometry/rectangle.h \
     Geometry/polygon.h \
-    Collisions/collision_detector.h \
-    Collisions/circle_point_collision_detector.h \
-    Collisions/circle_circle_collision_detector.h \
-    Collisions/circle_segment_collision_detector.h \
-    Collisions/circle_polygon_collision_detector.h \
-    Collisions/collision_detector_factory.h \
     Utilities/math_utils.h \
-    Dynamics/body.h
-b
+    Dynamics/body.h \
+    Collisions/collision.h \
+    Collisions/circle_circle_collision.h \
+    Collisions/circle_point_collision.h \
+    Collisions/circle_polygon_collision.h \
+    Collisions/circle_segment_collision.h \
+    Collisions/collision_factory.h
