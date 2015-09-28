@@ -1,7 +1,7 @@
-#ifndef COLLISION_DETECTOR_H
-#define COLLISION_DETECTOR_H
+#ifndef COLLISION_H
+#define COLLISION_H
 
-class CollisionDetector
+class Collision
 {
 public:
   /*
@@ -10,6 +10,12 @@ public:
    * other - they collide.
    */
   virtual bool detect() const = 0;
+
+  /*
+   * Applies appropriate impulses to the colliding
+   * bodies.
+   */
+  virtual void apply() const = 0;
 };
 
-#endif // COLLISION_DETECTOR_H
+#endif // COLLISION_H
