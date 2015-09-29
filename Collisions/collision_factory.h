@@ -45,15 +45,12 @@ public:
       return new CirclePolygonCollision(b2, b1);
     }
     else if (typeid(*s1) == typeid(Circle) && typeid(*s2) == typeid(Rectangle)) {
-      std::cout << "circ rect" << std::endl;
       return new CirclePolygonCollision(b1, b2);
     }
     else if (typeid(*s1) == typeid(Rectangle) && typeid(*s2) == typeid(Circle)) {
-      std::cout << "rect circ" << std::endl;
       return new CirclePolygonCollision(b2, b1);
     }
     else if (typeid(*s1) == typeid(Circle) && typeid(*s2) == typeid(Circle)) {
-      std::cout << "circ circ" << std::endl;
       return new CircleCircleCollision(b1, b2);
     }
     else {
