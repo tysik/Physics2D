@@ -15,7 +15,7 @@ public:
    * Points must be given in counter-clokwise direction.
    * The polygon must be convex.
    */
-  Polygon(const std::vector<Vec>& points = std::vector<Vec>(), const Vec& origin = Vec())
+  Polygon(const std::vector<Vec>& points = std::vector<Vec>(), Vec* origin = nullptr)
     : Shape(origin),
       points_(points.begin(), points.end())
   {
@@ -27,12 +27,13 @@ public:
   }
 
   Polygon(const Polygon& polygon)
-    : Shape(polygon.origin()),
-      points_(polygon.points().begin(), polygon.points().end())
-  {}
+    : Shape(),
+      points_(polygon.points().begin(), polygon.points().end()) {
+    origin_ = new Vec(polygon.origin());
+  }
 
   virtual Vec getNormal(const Vec& point) const {
-    Vec p = point - origin_;
+    Vec p = point - origin();
 
     Segment s = Segment(points_[0], points_[1]);
     float distance = s.getSmallestDistance(p);
@@ -52,7 +53,7 @@ public:
   }
 
   virtual float getSmallestDistance(const Vec& point) const {
-    Vec p = point - origin_;
+    Vec p = point - origin();
 
     float distance = Segment(points_[0], points_[1]).getSmallestDistance(p);
 

@@ -53,6 +53,7 @@ public:
       return new CirclePolygonCollision(b2, b1);
     }
     else if (typeid(*s1) == typeid(Circle) && typeid(*s2) == typeid(Circle)) {
+      std::cout << "circ circ" << std::endl;
       return new CircleCircleCollision(b1, b2);
     }
     else {

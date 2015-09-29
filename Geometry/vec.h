@@ -31,14 +31,14 @@ public:
   /*
    * Returns a vector rotated left by 90 deg.
    */
-  Vec perpendicular() { return Vec(-y, x); }
+  Vec perpendicular() const { return Vec(-y, x); }
 
   /*
    * Returns a vector as if it was reflected from the surface
    * which normal vector is given by parameter. normal is assumed
    * to be normalized.
    */
-  Vec reflected(const Vec& normal) { return *this - 2.0f * normal * (normal.dot(*this)); }
+  Vec reflected(const Vec& normal) const { return *this - 2.0f * normal * (normal.dot(*this)); }
 
   friend Vec operator+ (const Vec& v1, const Vec& v2) { return Vec(v1.x + v2.x, v1.y + v2.y); }
   friend Vec operator- (const Vec& v1, const Vec& v2) { return Vec(v1.x - v2.x, v1.y - v2.y); }

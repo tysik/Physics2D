@@ -6,13 +6,16 @@
 class Rectangle : public Polygon
 {
 public:
-  Rectangle(const Vec& size, const Vec& origin = Vec())
-    : Polygon(std::vector<Vec>{origin, origin + Vec(size.x, 0.0f), origin + size, origin + Vec(0.0f, size.y)}, origin)
+  /*
+   * Parameter lb stands from left-bottom corner position
+   */
+  Rectangle(const Vec& lb = Vec(), const Vec& size = Vec(1.0f, 1.0f), Vec* origin = nullptr)
+    : Polygon(std::vector<Vec>{lb, lb + Vec(size.x, 0.0f), lb + size, lb + Vec(0.0f, size.y)}, origin)
   {
     assert(checkRightAngles());
   }
 
-  Rectangle(const std::vector<Vec>& points = std::vector<Vec>(), const Vec& origin = Vec())
+  Rectangle(const std::vector<Vec>& points = std::vector<Vec>(), Vec* origin = nullptr)
     : Polygon(points, origin)
   {
     assert(points.size() == 4);

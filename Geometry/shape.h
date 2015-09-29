@@ -25,12 +25,14 @@ public:
    */
   virtual float getArea() const = 0;
 
-  Vec origin() const { return origin_; }
+  Vec origin() const { return *origin_; }
+
+  void assignOrigin(Vec* origin) { origin_ = origin; }
 
 protected:
-  Shape(const Vec& origin = Vec()) : origin_(origin) {}
+  Shape(Vec* origin = nullptr) : origin_(origin) {}
 
-  Vec origin_;  // The 2D offset (wanna move the shape? just move the origin!)
+  Vec* origin_;  // Points to position of shape in the world
 };
 
 #endif // SHAPE_H

@@ -13,13 +13,19 @@
 class Body
 {
 public:
-  Body(float mass = 0.0f, Vec position = Vec()) : mass_(mass), position_(position) {
+  Body(float mass = 1.0f, Vec position = Vec()) : mass_(mass), position_(position) {
     if (mass_ <= 0.0f)
-      mass_inv_ = 0.0f;
+      mass = 0.0f, mass_inv_ = 0.0f;
+    else
+      mass_inv_ = 1.0f / mass_;
+
+    velocity_ = Vec();
+    acceleration_ = Vec();
   }
 
   void assignShape(Shape* shape) {
     shape_ = shape;
+    shape_->assignOrigin(&position_);
   }
 
   void applyForce(Vec f) {
@@ -46,13 +52,14 @@ public:
   Vec acceleration() const { return acceleration_; }
 
 private:
-  Shape* shape_;
   float mass_;
   float mass_inv_;
 
   Vec position_;
   Vec velocity_;
   Vec acceleration_;
+
+  Shape* shape_;
 };
 
 #endif // BODY_H

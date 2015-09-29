@@ -9,20 +9,22 @@
 class Segment : public Shape
 {
 public:
-  Segment(const Vec& p1 = Vec(), const Vec& p2 = Vec(1.0f, 0.0f), const Vec& origin = Vec())
+  Segment(const Vec& p1 = Vec(), const Vec& p2 = Vec(1.0f, 0.0f), Vec* origin = nullptr)
     : Shape(origin), p1_(p1), p2_(p2) {
     assert(p1_ != p2_);
   }
 
   Segment(const Segment& segment)
-    : Shape(segment.origin()), p1_(segment.first_point()), p2_(segment.last_point()) {}
+    : Shape(), p1_(segment.first_point()), p2_(segment.last_point()) {
+    origin_ = new Vec(segment.origin());
+  }
 
   /*
    * If the point's projection on segment lays outside
    * the normal is obtained from the edge point.
    */
   virtual Vec getNormal(const Vec& point) const {
-    Vec p = point - origin_;
+    Vec p = point - origin();
 
     Vec a = p2_ - p1_;
     Vec b = p - p1_;
@@ -48,7 +50,7 @@ public:
    * p = p1 + t * (p2 - p1)
    */
   virtual float getSmallestDistance(const Vec& point) const {
-    Vec p = point - origin_;
+    Vec p = point - origin();
 
     Vec a = p2_ - p1_;
     Vec b = p - p1_;
@@ -74,8 +76,8 @@ public:
   }
 
   // Getters
-  Vec first_point() const { return p1_ + origin_; }
-  Vec last_point() const { return p2_ + origin_; }
+  Vec first_point() const { return p1_ + origin(); }
+  Vec last_point() const { return p2_ + origin(); }
 
 private:
   Vec p1_;
