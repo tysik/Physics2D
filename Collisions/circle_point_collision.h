@@ -22,7 +22,7 @@ public:
     float m1 = b1_.mass();
     float m2 = b2_.mass();
 
-    Vec normal = c_->getNormal(p_->origin());
+    Vec normal = p_->getNormal(c_->origin());
     if (normal.dot(b2_.velocity() - b1_.velocity()) <= 0.0f)
       return;
 //    Vec tangent = normal.perpendicular();
