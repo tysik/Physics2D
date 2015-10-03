@@ -18,6 +18,9 @@ public:
   }
 
   virtual void apply() const {
+//    if ((c1_->origin() - c2_->origin()).dot(b1_.velocity()) < 0.0f)
+//      return;
+
     float m1 = b1_.mass();
     float m2 = b2_.mass();
 
